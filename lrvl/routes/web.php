@@ -11,8 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+//Route::get('/', ['as' => 'posts', 'uses' => 'SiteController@index']);
+Route::get('/', ['as' => 'posts', 'uses' => 'PostController@index']);
+Route::get('unpublished', ['as' => 'posts.unpublished', 'uses' => 'PostController@unpublished']);
+
+$router->resource('post', 'PostController');
 
 Route::resource('photos', 'PhotoController');
+
+Route::get('welcome', 'WelcomeController@index');
