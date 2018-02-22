@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePostsTable extends Migration
 {
-    public const TABLE_NAME = 'posts';
+//    public const TABLE_NAME = 'posts';
     /**
      * Run the migrations.
      *
@@ -14,8 +14,8 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable(self::TABLE_NAME)) {
-            Schema::create(self::TABLE_NAME, function (Blueprint $table) {
+        if (!Schema::hasTable('posts')) {
+            Schema::create('posts', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('title')->nullable();
                 $table->string('slug')->unique();
@@ -35,6 +35,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(self::TABLE_NAME);
+        Schema::dropIfExists('posts');
     }
 }

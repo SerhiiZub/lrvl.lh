@@ -31,39 +31,62 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="">
-            {{--<a class="navbar-brand" href="index.html">--}}
-<!--                <h1 style="background-image: url(./img/Stretch.png)">       </h1>-->
-                <!--<h1 style="background-image: url(./img/Stretch.png)">Stretch ON</h1>-->
-                <!--<img id="logo" src="./img/Stretch.png" alt="logo">-->
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#intro">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#service">Service</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <!--        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="#">Example menu</a></li>
-                            <li><a href="#">Example menu</a></li>
-                            <li><a href="#">Example menu</a></li>
-                          </ul>
-                        </li>-->
+                <li class="active"><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="{{ route('about') }}">About</a></li>
+                <li><a href="{{ route('service') }}">Service</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
+                       <!-- Authentication Links -->
+                        @guest
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                Вход <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('user') }}">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endguest
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
+
 @show
 
 <div class="main-container" style="margin-top: 90px">
     @yield('content')
-
 </div>
 
 <footer>
@@ -107,6 +130,7 @@
 <script src="{{ asset('js/custom.js') }}"></script>
 {{--<script src="../../assets/js/custom.js"></script>--}}
 {{--<script src="../../assets/contactform/contactform.js"></script>--}}
+{{--<script src="{{ asset('js/app.js') }}"></script>--}}
 
 </body>
 

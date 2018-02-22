@@ -182,6 +182,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
+        App\Providers\FrontServiceProvider::class,
 
     ],
 
